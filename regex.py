@@ -53,29 +53,32 @@ def find_days(string_list):
             somelst += item[:2]
 
     #return the list of days
-    pass
+    #pass
     return somelst
 
 def find_domains(string_list):
     """ Return a list of web address domains from the list of strings the domains of a wbsite are after www. """
 
     # initialize an empty list
-
+    emptylst = []
     # define the regular expression
-    #after www.
+    regex = '^www..+\b'
     # loop through each line of the string list
-
+    for line in string_list:
     # find all the domains that match the regular expression in each line
-
+        matchlst = re.findall(regex,line)
     # loop through the found domains
-
-    # get the domain name by splitting the (//) after the https or http to get the website name
+        for item in matchlst:
+            # get the domain name by splitting the (//) after the https or http to get the website name
+            domainsplt = item.split("//")
+            domain = domainsplt[1]
+            domain = domain.strip('www.')
     # then strip the www. to get only the domain name
-
     # add the domains to your empty list
-    
+            emptylst.append(domain)
     #return the list of domains
     pass
+    return emptylst
 
 class TestAllMethods(unittest.TestCase):
 
